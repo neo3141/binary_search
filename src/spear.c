@@ -10,7 +10,7 @@ int p(int x){
   for(c = 0; c < n; c++){
     sum += A[c]/x;
   }
-  return sum < k;//最後に0になるxが求める答え
+  return sum < k;
 }
 int main(){
   int i, lb, ub;
@@ -19,20 +19,17 @@ int main(){
     scanf("%d", &A[i]);
   }
   lb = 0;
-  ub = 100000000;
-  if(p(1000000000) != 0){//全部0なら右端を取ればよい
-    while(ub - lb > 1){
-      int mid = (lb + ub)/2;
-      if(p(mid)){
-        ub = mid;
-      }
-      else{
-        lb = mid;
-      }
+  ub = 100000001;
+  while(ub - lb > 1){
+    int mid = (lb + ub)/2;
+    if(p(mid)){
+      ub = mid;
     }
-    ub -= 1;
+    else{
+      lb = mid;
+    }
   }
-  printf("%d\n",ub);
+  printf("%d\n",ub - 1);
 
   return 0;
 }
